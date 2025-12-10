@@ -10,55 +10,81 @@
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
     padding: 20px;
     margin: 0;
-    background: #fafafa;
-    line-height: 1.6;
+    background: #f5f7fa;
+    line-height: 1.65;
   }
-  h2, h3 {
+
+  h2 {
     margin-top: 0;
+    font-size: 24px;
+    font-weight: 600;
   }
+
+  h3 {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
   .step {
     display: none;
     background: #fff;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
   }
+
   .active {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
   }
+
   button {
     padding: 14px 20px;
-    margin-top: 20px;
-    font-size: 18px;
-    border-radius: 10px;
+    margin-top: 16px;
+    font-size: 17px;
+    border-radius: 12px;
     border: none;
     background-color: #007aff;
     color: white;
     width: 100%;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
   }
+
   button:active {
-    opacity: 0.8;
+    opacity: 0.75;
   }
-  .choice {
-    margin-top: 15px;
-  }
+
+  .choice { margin-top: 14px; }
+
   img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
+    margin: 12px 0;
   }
+
+  .back-btn {
+    margin-top: 10px;
+    background: #9aa0a6;
+  }
+
 </style>
 </head>
 
 <body>
-
 <h2>エクステ縮毛加工（ロートーン）フローチャート</h2>
 
 <!-- ① -->
 <div id="step1" class="step active">
   <h3>① 流しシャンプー</h3>
   <p>無添加石鹸タイプで滑りが残らないまで洗う</p>
-  <div class="choice"><button onclick="next(1)">滑りが残る → ①を繰り返す</button></div>
+  <div class="choice"><button onclick="next(1)">滑りが残る → ①をもう一度</button></div>
   <div class="choice"><button onclick="next(2)">滑りなし → ②へ</button></div>
 </div>
 
@@ -67,40 +93,42 @@
   <h3>② 一剤塗布</h3>
   <p>GOLD 5g + GMT 2g（5分放置）</p>
   <button onclick="next(3)">次へ</button>
+  <button class="back-btn" onclick="back(1)">戻る</button>
 </div>
 
 <!-- ③ -->
 <div id="step3" class="step">
   <h3>③ 軟化チェック</h3>
-  <p>※この状態は「危険・やばい反応」のサイン：</p>
-
-  <!-- ★ここに画像を入れる場合は差し替え可★ -->
+  <p>⚠️ この状態は「危険・やばい反応」のサイン：</p>
   <img src="danger.jpg" alt="危険な反応の例">
-
-  <div class="choice"><button onclick="next(32)">まだ → 追加薬剤へ</button></div>
+  <div class="choice"><button onclick="next('3a')">まだ → 追加薬剤へ</button></div>
   <div class="choice"><button onclick="next(4)">OK → ④へ</button></div>
+  <button class="back-btn" onclick="back(2)">戻る</button>
 </div>
 
 <!-- ③-追加薬剤 -->
-<div id="step32" class="step">
+<div id="step3a" class="step">
   <h3>③ - 追加工程</h3>
   <p>ネオリシオN or クオライン80 → 10分放置</p>
   <p>それでも軟化しない → ネオリシオH or クオライン130</p>
   <button onclick="next(3)">軟化チェックに戻る</button>
+  <button class="back-btn" onclick="back(3)">戻る</button>
 </div>
 
 <!-- ④ -->
 <div id="step4" class="step">
   <h3>④ 流しシャンプー</h3>
   <p>滑りが残らないまで洗う</p>
-  <div class="choice"><button onclick="next(4)">滑りが残る → ④繰り返し</button></div>
+  <div class="choice"><button onclick="next(4)">滑りが残る → ④を繰り返す</button></div>
   <div class="choice"><button onclick="next(5)">滑りなし → ⑤へ</button></div>
+  <button class="back-btn" onclick="back(3)">戻る</button>
 </div>
 
 <!-- ⑤ -->
 <div id="step5" class="step">
   <h3>⑤ 乾かしてアイロン作業</h3>
   <button onclick="next(6)">次へ</button>
+  <button class="back-btn" onclick="back(4)">戻る</button>
 </div>
 
 <!-- ⑥ -->
@@ -108,6 +136,7 @@
   <h3>⑥ シャンプーボウルでオキシ6％</h3>
   <p>お湯＋オキシ6％が白く濁るまで → 5分放置</p>
   <button onclick="next(7)">次へ</button>
+  <button class="back-btn" onclick="back(5)">戻る</button>
 </div>
 
 <!-- ⑦ -->
@@ -116,12 +145,14 @@
   <p>滑りが残らないまで洗う</p>
   <div class="choice"><button onclick="next(7)">滑り残る → ⑦繰り返し</button></div>
   <div class="choice"><button onclick="next(8)">滑りなし → 完成へ</button></div>
+  <button class="back-btn" onclick="back(6)">戻る</button>
 </div>
 
 <!-- ⑧ -->
 <div id="step8" class="step">
   <h3>⑧ ドライ仕上げ → アイロンフィニッシュ</h3>
   <p>🎉 完成！おつかれさまです！</p>
+  <button class="back-btn" onclick="back(7)">戻る</button>
 </div>
 
 <script>
@@ -129,6 +160,11 @@ function next(num) {
   const steps = document.querySelectorAll('.step');
   steps.forEach(step => step.classList.remove('active'));
   document.getElementById('step' + num).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function back(num) {
+  next(num);
 }
 </script>
 
