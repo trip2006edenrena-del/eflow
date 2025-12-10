@@ -14,17 +14,8 @@
     line-height: 1.65;
   }
 
-  h2 {
-    margin-top: 0;
-    font-size: 24px;
-    font-weight: 600;
-  }
-
-  h3 {
-    margin-top: 0;
-    font-size: 20px;
-    font-weight: 600;
-  }
+  h2 { font-size: 24px; font-weight: 600; margin-top: 0; }
+  h3 { font-size: 20px; font-weight: 600; margin-top: 0; }
 
   .step {
     display: none;
@@ -56,10 +47,7 @@
     cursor: pointer;
     transition: opacity 0.2s ease;
   }
-
-  button:active {
-    opacity: 0.75;
-  }
+  button:active { opacity: 0.75; }
 
   .choice { margin-top: 14px; }
 
@@ -73,7 +61,6 @@
     margin-top: 10px;
     background: #9aa0a6;
   }
-
 </style>
 </head>
 
@@ -83,15 +70,18 @@
 <!-- ① -->
 <div id="step1" class="step active">
   <h3>① 流しシャンプー</h3>
-  <p>無添加石鹸タイプで滑りが残らないまで洗う</p>
-  <div class="choice"><button onclick="next(1)">滑りが残る → ①をもう一度</button></div>
-  <div class="choice"><button onclick="next(2)">滑りなし → ②へ</button></div>
+  <p>無添加石鹸タイプでヌメりが残らないまで洗う</p>
+  <div class="choice"><button onclick="next(1)">ヌメりが残る → ①をもう一度</button></div>
+  <div class="choice"><button onclick="next(2)">ヌメりなし → ②へ</button></div>
 </div>
 
 <!-- ② -->
 <div id="step2" class="step">
   <h3>② 一剤塗布</h3>
   <p>GOLD 5g + GMT 2g（5分放置）</p>
+   <!-- 文の上に画像を配置 -->
+  <img src="" alt="一剤塗布の参考画像">
+
   <button onclick="next(3)">次へ</button>
   <button class="back-btn" onclick="back(1)">戻る</button>
 </div>
@@ -100,7 +90,7 @@
 <div id="step3" class="step">
   <h3>③ 軟化チェック</h3>
   <p>⚠️ この状態は「危険・やばい反応」のサイン：</p>
- <img src="BTV_nex1_2.webp" alt="危険な反応の例">
+  <img src="BTV_nex1_2.webp" alt="危険な反応の例">
 
   <div class="choice"><button onclick="next('3a')">まだ → 追加薬剤へ</button></div>
   <div class="choice"><button onclick="next(4)">OK → ④へ</button></div>
@@ -119,9 +109,9 @@
 <!-- ④ -->
 <div id="step4" class="step">
   <h3>④ 流しシャンプー</h3>
-  <p>滑りが残らないまで洗う</p>
-  <div class="choice"><button onclick="next(4)">滑りが残る → ④を繰り返す</button></div>
-  <div class="choice"><button onclick="next(5)">滑りなし → ⑤へ</button></div>
+  <p>ヌメりが残らないまで洗う</p>
+  <div class="choice"><button onclick="next(4)">ヌメりが残る → ④を繰り返す</button></div>
+  <div class="choice"><button onclick="next(5)">ヌメりなし → ⑤へ</button></div>
   <button class="back-btn" onclick="back(3)">戻る</button>
 </div>
 
@@ -143,9 +133,9 @@
 <!-- ⑦ -->
 <div id="step7" class="step">
   <h3>⑦ 流しシャンプー</h3>
-  <p>滑りが残らないまで洗う！※この時のシャンプーは髪の毛のシャンプーでする</p>
-  <div class="choice"><button onclick="next(7)">滑り残る → ⑦繰り返し</button></div>
-  <div class="choice"><button onclick="next(8)">滑りなし → 完成へ</button></div>
+  <p>ヌメりが残らないまで洗う！※この時のシャンプーは髪の毛のシャンプーでする</p>
+  <div class="choice"><button onclick="next(7)">ヌメり残る → ⑦繰り返し</button></div>
+  <div class="choice"><button onclick="next(8)">ヌメりなし → 完成へ</button></div>
   <button class="back-btn" onclick="back(6)">戻る</button>
 </div>
 
